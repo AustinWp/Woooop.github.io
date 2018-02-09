@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html lang="">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>什么样代码是好的？对于编写代码，人们常常会出现哪些误区？ | 武小鹏的博客</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x4EC0;&amp;#x4E48;&amp;#x6837;&amp;#x4EE3;&amp;#x7801;&amp;#x662F;&amp;#x597D;&amp;#x7684;&amp;#xFF1F;&amp;#x5BF9;&amp;#x4E8E;&amp;#x7F16;&amp;#x5199;&amp;#x4EE3;&amp;#x7801;&amp;#xFF0C;&amp;#x4EBA;&amp;#x4EEC;&amp;#x5E38;&amp;#x5E38;&amp;#x4F1A;&amp;#x51FA;&amp;#x73B0;&amp;#x54EA;&amp;#x4E9B;">
+<meta name="keywords" content="iOS,苹果,移动端,OC,Swift,Objective-C,Mobile,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么样代码是好的？对于编写代码，人们常常会出现哪些误区？">
+<meta property="og:url" content="http://yoursite.com/2017/08/28/什么样代码是好的？对于编写代码，人们常常会出现哪些误区？/index.html">
+<meta property="og:site_name" content="武小鹏的博客">
+<meta property="og:description" content="&amp;#x4EC0;&amp;#x4E48;&amp;#x6837;&amp;#x4EE3;&amp;#x7801;&amp;#x662F;&amp;#x597D;&amp;#x7684;&amp;#xFF1F;&amp;#x5BF9;&amp;#x4E8E;&amp;#x7F16;&amp;#x5199;&amp;#x4EE3;&amp;#x7801;&amp;#xFF0C;&amp;#x4EBA;&amp;#x4EEC;&amp;#x5E38;&amp;#x5E38;&amp;#x4F1A;&amp;#x51FA;&amp;#x73B0;&amp;#x54EA;&amp;#x4E9B;">
+<meta property="og:updated_time" content="2017-09-14T11:35:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="什么样代码是好的？对于编写代码，人们常常会出现哪些误区？">
+<meta name="twitter:description" content="&amp;#x4EC0;&amp;#x4E48;&amp;#x6837;&amp;#x4EE3;&amp;#x7801;&amp;#x662F;&amp;#x597D;&amp;#x7684;&amp;#xFF1F;&amp;#x5BF9;&amp;#x4E8E;&amp;#x7F16;&amp;#x5199;&amp;#x4EE3;&amp;#x7801;&amp;#xFF0C;&amp;#x4EBA;&amp;#x4EEC;&amp;#x5E38;&amp;#x5E38;&amp;#x4F1A;&amp;#x51FA;&amp;#x73B0;&amp;#x54EA;&amp;#x4E9B;">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:allenwooop@gmail.com",
+  "image": "",
+  "name": "Wooop",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>武小鹏的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">Wooop</a>
+                    
+                        <div class="meta">
+                            Programer
+                        </div>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        <div class="item">
+                            <i class="marker icon" style="float: left"></i>
+                            <div class="content">Hangzhou</div>
+                        </div>
+                        
+                        
+                        <div class="item">
+                            <i class="mail icon" style="float: left"></i>
+                            <div class="content">
+                                <a href="mailto:allenwooop@gmail.com">allenwooop@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+
+                                <a href="https://github.com/Woooop"><i class="large github icon" style="float: left"></i></a>
+
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-什么样代码是好的？对于编写代码，人们常常会出现哪些误区？" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    什么样代码是好的？对于编写代码，人们常常会出现哪些误区？
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h5 id="&#x4EC0;&#x4E48;&#x6837;&#x4EE3;&#x7801;&#x662F;&#x597D;&#x7684;&#xFF1F;&#x5BF9;&#x4E8E;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#xFF0C;&#x4EBA;&#x4EEC;&#x5E38;&#x5E38;&#x4F1A;&#x51FA;&#x73B0;&#x54EA;&#x4E9B;&#x8BEF;&#x533A;&#xFF1F;"><a href="#&#x4EC0;&#x4E48;&#x6837;&#x4EE3;&#x7801;&#x662F;&#x597D;&#x7684;&#xFF1F;&#x5BF9;&#x4E8E;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#xFF0C;&#x4EBA;&#x4EEC;&#x5E38;&#x5E38;&#x4F1A;&#x51FA;&#x73B0;&#x54EA;&#x4E9B;&#x8BEF;&#x533A;&#xFF1F;" class="headerlink" title="&#x4EC0;&#x4E48;&#x6837;&#x4EE3;&#x7801;&#x662F;&#x597D;&#x7684;&#xFF1F;&#x5BF9;&#x4E8E;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#xFF0C;&#x4EBA;&#x4EEC;&#x5E38;&#x5E38;&#x4F1A;&#x51FA;&#x73B0;&#x54EA;&#x4E9B;&#x8BEF;&#x533A;&#xFF1F;"></a>&#x4EC0;&#x4E48;&#x6837;&#x4EE3;&#x7801;&#x662F;&#x597D;&#x7684;&#xFF1F;&#x5BF9;&#x4E8E;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#xFF0C;&#x4EBA;&#x4EEC;&#x5E38;&#x5E38;&#x4F1A;&#x51FA;&#x73B0;&#x54EA;&#x4E9B;&#x8BEF;&#x533A;&#xFF1F;</h5><ul class="ui list">
+<li><p>&#x4EE3;&#x7801;&#x662F;&#x66F4;&#x591A;&#x65F6;&#x95F4;&#x662F;&#x7528;&#x6765;&#x7EF4;&#x62A4;&#x7684;&#xFF0C;&#x5176;&#x6B21;&#x624D;&#x662F;&#x5B9E;&#x73B0;&#x529F;&#x80FD;&#x7684;</p>
+</li>
+<li><p>&#x597D;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x826F;&#x597D;&#x7684;&#x81EA;&#x6211;&#x63CF;&#x8FF0;&#x7684;&#xFF0C;&#x5E76;&#x4E0D;&#x9700;&#x8981;&#x592A;&#x591A;&#x7684;&#x6CE8;&#x91CA;&#xFF0C;&#x4E3A;&#x4E86;&#x4EE3;&#x7801;&#x66F4;&#x597D;&#x7684;&#x7EF4;&#x62A4;&#xFF0C;&#x5728;&#x65E0;&#x6CD5;&#x5199;&#x51FA;&#x4E00;&#x76EE;&#x4E86;&#x7136;&#x7684;&#x4EE3;&#x7801;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5FC5;&#x8981;&#x7684;&#x6CE8;&#x91CA;&#x662F;&#x4E0D;&#x80FD;&#x5C11;&#x7684;&#x3002;&#x5207;&#x52FF;&#x4E0D;&#x80FD;&#x4EE3;&#x7801;&#x903B;&#x8F91;&#x65E2;&#x590D;&#x6742;&#xFF0C;&#x8FD8;&#x6CA1;&#x6709;&#x76F8;&#x5E94;&#x7684;&#x6CE8;&#x91CA;&#x6216;&#x8005;&#x6587;&#x6863;&#x8BF4;&#x660E;&#x3002;</p>
+</li>
+<li><p>&#x6240;&#x6709;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x578B;&#x548C;&#x7406;&#x8BBA;&#x90FD;&#x53EA;&#x662F;&#x624B;&#x6BB5;&#xFF0C;&#x5176;&#x5B9E;&#x552F;&#x4E00;&#x7684;&#x76EE;&#x6807;&#x662F;&#x5728;&#x5C3D;&#x91CF;&#x63D0;&#x9AD8;&#xFF08;&#x53EF;&#x7EF4;&#x62A4;&#x6027;&#xFF0C;&#x53EF;&#x590D;&#x7528;&#x6027;=&#x53EF;&#x6D4B;&#x8BD5;&#x6027;&#xFF09;&#x7B49;&#x7B49;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#x5B9E;&#x73B0;&#x4E1A;&#x52A1;&#x9700;&#x6C42;&#x3002;&#x5207;&#x4E0D;&#x53EF;&#x5F62;&#x800C;&#x4E0A;&#x5B66;&#xFF0C;&#x8D70;&#x6559;&#x6761;&#x4E3B;&#x4E49;&#xFF0C;&#x4E00;&#x5473;&#x7684;&#x8FFD;&#x6C42;&#x56FA;&#x8BDD;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4ECE;&#x800C;&#x4F7F;&#x5F97;&#x4EE3;&#x7801;&#x590D;&#x6742;&#x96BE;&#x4EE5;&#x7406;&#x89E3;&#x548C;&#x6D4B;&#x8BD5;&#x3002;</p>
+<h5 id="&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x5199;&#x51FA;&#x597D;&#x7684;&#x4EE3;&#x7801;&#xFF1F;"><a href="#&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x5199;&#x51FA;&#x597D;&#x7684;&#x4EE3;&#x7801;&#xFF1F;" class="headerlink" title="&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x5199;&#x51FA;&#x597D;&#x7684;&#x4EE3;&#x7801;&#xFF1F;"></a>&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x5199;&#x51FA;&#x597D;&#x7684;&#x4EE3;&#x7801;&#xFF1F;</h5><ul>
+<li>code review  &#x91CD;&#x70B9;&#x4E0D;&#x662F;&#x673A;&#x5668;&#x53EF;&#x4EE5;&#x68C0;&#x67E5;&#x51FA;&#x6765;&#x7684;&#x4EE3;&#x7801;&#x9519;&#x8BEF;&#x6216;&#x8005;&#x4E00;&#x4E9B;&#x7EC6;&#x5FAE;&#x7684;&#x7F16;&#x5199;&#x4E60;&#x60EF;&#xFF0C;&#x91CD;&#x70B9;&#x662F;&#x4EE3;&#x7801;&#x7684;&#x8BBE;&#x8BA1;&#x601D;&#x8DEF;&#x548C;&#x6A21;&#x5757;&#x7684;&#x5212;&#x5206;&#x65B9;&#x6CD5;&#xFF0C;&#x5BF9;&#x4E8E;&#x5B9E;&#x9645;&#x60C5;&#x51B5;&#x4E2D;&#xFF0C;&#x5C0F;&#x56E2;&#x961F;&#x7684;&#x96C6;&#x4F53;&#x91CD;&#x6784;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684;&#x9009;&#x62E9;</li>
+<li>&#x4EE3;&#x7801;&#x91CD;&#x6784;</li>
+<li>&#x9605;&#x8BFB;&#x4F18;&#x79C0;&#x7684;&#x5F00;&#x6E90;&#x4EE3;&#x7801;&#xFF0C;&#x6216;&#x8005;&#x7EC4;&#x5185;&#x4F18;&#x79C0;&#x540C;&#x5B66;&#x5199;&#x51FA;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x9605;&#x8BFB;&#x81EA;&#x5DF1;&#x8EAB;&#x8FB9;&#x4EBA;&#x7684;&#x4EE3;&#x7801;&#x597D;&#x5904;&#x662F;&#x53EF;&#x4EE5;&#x95EE;&#x95EE;&#x4ED6;&#x4EEC;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x6837;&#x5199;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x90A3;&#x6837;&#x5199;&#xFF0C;&#x8FDB;&#x6B65;&#x4F1A;&#x5F88;&#x5FEB;&#x3002;</li>
+<li>&#x6700;&#x540E;&#x662F;&#x4F7F;&#x7528;&#x4E00;&#x4E9B;&#x9759;&#x6001;&#x4EE3;&#x7801;&#x68C0;&#x67E5;&#x7684;&#x5DE5;&#x5177;&#x8FDB;&#x884C;&#x4EE3;&#x7801;&#x68C0;&#x67E5;&#x3002;</li>
+</ul>
+<h5 id="&#x5E38;&#x7528;&#x7684;&#x4EE3;&#x7801;&#x6574;&#x6D01;&#x6280;&#x5DE7;&#xFF1A;"><a href="#&#x5E38;&#x7528;&#x7684;&#x4EE3;&#x7801;&#x6574;&#x6D01;&#x6280;&#x5DE7;&#xFF1A;" class="headerlink" title="&#x5E38;&#x7528;&#x7684;&#x4EE3;&#x7801;&#x6574;&#x6D01;&#x6280;&#x5DE7;&#xFF1A;"></a>&#x5E38;&#x7528;&#x7684;&#x4EE3;&#x7801;&#x6574;&#x6D01;&#x6280;&#x5DE7;&#xFF1A;</h5><ul>
+<li>&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x4E1C;&#x897F;&#xFF08;class method var&#xFF09;&#x90FD;&#x5E94;&#x8BE5;&#x660E;&#x786E;&#x7684;&#x8D1F;&#x8D23;&#x67D0;&#x4E2A;&#x5355;&#x4E00;&#x6982;&#x5FF5;&#x7684;&#x4E8B;&#x60C5;&#x3002;</li>
+<li>&#x5728;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x529F;&#x80FD;&#x70B9;&#x4E4B;&#x524D;&#xFF0C;&#x5BF9;&#x5176;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x4E00;&#x4E2A;&#x5927;&#x4F53;&#x7684;&#x8BBE;&#x8BA1;&#xFF08;&#x5982;&#x679C;&#x662F;&#x5F3A;&#x6570;&#x636E;&#x76F8;&#x5173;&#x7684;&#x8BDD;&#xFF0C;&#x5728;&#x8111;&#x6D77;&#x4E2D;&#x628A;&#x6570;&#x636E;&#x6D41;&#x4E32;&#x8D77;&#x6765;&#xFF0C;&#x5FC5;&#x8981;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x72B6;&#x6001;&#x673A;&#x7684;&#x6982;&#x5FF5;&#x8DDF;&#x8E2A;APP&#x7684;&#x53D8;&#x5316;&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x5B8C;&#x6210;&#x7EC6;&#x8282;&#x5B9E;&#x73B0;&#x4EE3;&#x7801;&#x3002;</li>
+<li>&#x7C7B;&#xFF0C;&#x65B9;&#x6CD5;&#xFF0C;&#x53D8;&#x91CF;&#xFF0C;&#x540D;&#x79F0;&#x7684;&#x8BBE;&#x8BA1;&#xFF0C;&#x51FD;&#x6570;&#x548C;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x7684;&#x8BBE;&#x8BA1;&#xFF0C;&#x76EE;&#x7684;&#x662F;&#x5C3D;&#x91CF;&#x9760;&#x8FD1;&#x8BA9;&#x4EBA;&#x4E00;&#x76EE;&#x4E86;&#x7136;&#x7684;&#x6548;&#x679C;</li>
+<li>&#x5BF9;&#x4E8E;&#x4EFB;&#x4F55;&#x7684;&#x65B9;&#x6CD5;&#x548C;&#x7C7B;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;UI&#x76F8;&#x5173;&#x8FD8;&#x662F;&#x7F51;&#x7EDC;&#x76F8;&#x5173;&#x8FD8;&#x662F;&#x903B;&#x8F91;&#x76F8;&#x5173;&#x6216;&#x8005;&#x662F;&#x6570;&#x636E;&#x5904;&#x7406;&#x76F8;&#x5173;&#xFF0C;&#x90FD;&#x5FC5;&#x987B;&#x51C6;&#x786E;&#x7684;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x5F52;&#x5C5E;&#xFF0C;&#x5E76;&#x4E14;&#x8FD9;&#x4E2A;&#x5F52;&#x5C5E;&#x662F;&#x5E08;&#x51FA;&#x6709;&#x540D;&#x7684;&#x3002;&#x8FD9;&#x5C31;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x826F;&#x597D;&#x7684;&#x6982;&#x5FF5;&#x5B9A;&#x4E49;&#x548C;&#x8BBE;&#x8BA1;&#xFF0C;&#xFF08;&#x5177;&#x4F53;&#x5C31;&#x662F;&#x6307;&#xFF0C;&#x8FD9;&#x4E9B;&#x4E8B;&#x60C5;&#x600E;&#x4E48;&#x5206;&#x5757;&#xFF0C;&#x653E;&#x5728;&#x54EA;&#xFF0C;&#x4E4B;&#x95F4;&#x600E;&#x4E48;&#x4F9D;&#x8D56;&#xFF09;</li>
+<li>&#x5BF9;&#x590D;&#x6742;&#x7EE7;&#x627F;&#x7684;&#x4F7F;&#x7528;&#x4FDD;&#x6301;&#x614E;&#x72EC;&#x7684;&#x6001;&#x5EA6;&#xFF0C;&#x5982;&#x679C;&#x5957;&#x4E1C;&#x897F;&#x4F7F;&#x7528;&#x590D;&#x6742;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#x5E76;&#x4E0D;&#x662F;&#x5FC5;&#x8981;&#x7684;&#xFF0C;&#x90A3;&#x4E48;&#x5C3D;&#x91CF;&#x4E0D;&#x8981;&#x4F7F;&#x7528;&#x3002;</li>
+</ul>
+</li>
+</ul>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-08-28T11:10:39.000Z" itemprop="datePublished">2017-08-28</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2017/09/14/WebRTC-编译以及运行IOS的Demo/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    WebRTC-编译以及运行IOS的Demo
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2017/08/28/保证用户拿到的内容没有被篡改的验证方法/" class="ui tiny button">
+                    
+                    保证用户拿到的内容没有被篡改的验证方法
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#什么样代码是好的？对于编写代码，人们常常会出现哪些误区？"><span>什么样代码是好的？对于编写代码，人们常常会出现哪些误区？</span></a></li><li><a href="#那么如何写出好的代码？"><span>那么如何写出好的代码？</span></a></li><li><a href="#常用的代码整洁技巧："><span>常用的代码整洁技巧：</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">Wooop</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

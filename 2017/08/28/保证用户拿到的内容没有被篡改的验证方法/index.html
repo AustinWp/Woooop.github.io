@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html lang="">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>保证用户拿到的内容没有被篡改的验证方法 | 武小鹏的博客</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x7528;&amp;#x6237;&amp;#x62FF;&amp;#x5230;&amp;#x7684;&amp;#x5185;&amp;#x5BB9;&amp;#x6CA1;&amp;#x6709;&amp;#x88AB;&amp;#x7BE1;&amp;#x6539;&amp;#x7684;&amp;#x9A8C;&amp;#x8BC1;&amp;#xFF1A; 1.&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x751F;&amp;#x6210;&amp;#x516C;&amp;#x79C1;&amp;#x94A5; 2.&amp;#">
+<meta name="keywords" content="iOS,苹果,移动端,OC,Swift,Objective-C,Mobile,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="保证用户拿到的内容没有被篡改的验证方法">
+<meta property="og:url" content="http://yoursite.com/2017/08/28/保证用户拿到的内容没有被篡改的验证方法/index.html">
+<meta property="og:site_name" content="武小鹏的博客">
+<meta property="og:description" content="&amp;#x7528;&amp;#x6237;&amp;#x62FF;&amp;#x5230;&amp;#x7684;&amp;#x5185;&amp;#x5BB9;&amp;#x6CA1;&amp;#x6709;&amp;#x88AB;&amp;#x7BE1;&amp;#x6539;&amp;#x7684;&amp;#x9A8C;&amp;#x8BC1;&amp;#xFF1A; 1.&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x751F;&amp;#x6210;&amp;#x516C;&amp;#x79C1;&amp;#x94A5; 2.&amp;#">
+<meta property="og:updated_time" content="2017-09-14T11:35:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="保证用户拿到的内容没有被篡改的验证方法">
+<meta name="twitter:description" content="&amp;#x7528;&amp;#x6237;&amp;#x62FF;&amp;#x5230;&amp;#x7684;&amp;#x5185;&amp;#x5BB9;&amp;#x6CA1;&amp;#x6709;&amp;#x88AB;&amp;#x7BE1;&amp;#x6539;&amp;#x7684;&amp;#x9A8C;&amp;#x8BC1;&amp;#xFF1A; 1.&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#x751F;&amp;#x6210;&amp;#x516C;&amp;#x79C1;&amp;#x94A5; 2.&amp;#">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:allenwooop@gmail.com",
+  "image": "",
+  "name": "Wooop",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>武小鹏的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">Wooop</a>
+                    
+                        <div class="meta">
+                            Programer
+                        </div>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        <div class="item">
+                            <i class="marker icon" style="float: left"></i>
+                            <div class="content">Hangzhou</div>
+                        </div>
+                        
+                        
+                        <div class="item">
+                            <i class="mail icon" style="float: left"></i>
+                            <div class="content">
+                                <a href="mailto:allenwooop@gmail.com">allenwooop@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+
+                                <a href="https://github.com/Woooop"><i class="large github icon" style="float: left"></i></a>
+
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-保证用户拿到的内容没有被篡改的验证方法" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    保证用户拿到的内容没有被篡改的验证方法
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <p>&#x7528;&#x6237;&#x62FF;&#x5230;&#x7684;&#x5185;&#x5BB9;&#x6CA1;&#x6709;&#x88AB;&#x7BE1;&#x6539;&#x7684;&#x9A8C;&#x8BC1;&#xFF1A;</p>
+<p>1.&#x670D;&#x52A1;&#x5668;&#x751F;&#x6210;&#x516C;&#x79C1;&#x94A5;</p>
+<p>2.&#x670D;&#x52A1;&#x5668;&#x516C;&#x5E03;&#x516C;&#x94A5;</p>
+<p>3.&#x670D;&#x52A1;&#x5668;&#x5BF9;&#x5373;&#x5C06;&#x53D1;&#x5E03;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;MD5&#xFF0C;&#x4F7F;&#x7528;&#x79C1;&#x94A5;&#x5BF9;MD5&#x540E;&#x751F;&#x6210;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x8FDB;&#x884C;&#x52A0;&#x5BC6;&#xFF0C;&#x751F;&#x6210;&#x7684;&#x4E1C;&#x897F;&#x79F0;&#x4E4B;&#x4E3A;&#x7B7E;&#x540D;</p>
+<p>4.&#x670D;&#x52A1;&#x5668;&#x628A;&#x8FD9;&#x4E2A;&#x7B7E;&#x540D;&#x548C;&#x672C;&#x6765;&#x8981;&#x53D1;&#x7684;&#x6570;&#x636E;&#x4E00;&#x8D77;&#x53D1;&#x7ED9;&#x7528;&#x6237;</p>
+<p>5.&#x7528;&#x6237;&#x6536;&#x5230;&#x6240;&#x6709;&#x6570;&#x636E;&#x540E;&#xFF0C;&#x7528;&#x516C;&#x94A5;&#x89E3;&#x5BC6;&#x7B7E;&#x540D;&#xFF0C;&#x5F97;&#x5230;MD5&#x5B57;&#x7B26;&#x4E32;&#xFF0C;</p>
+<p>6.&#x7528;&#x6237;&#x518D;&#x5BF9;&#x539F;&#x59CB;&#x6570;&#x636E;&#x8FDB;&#x884C;MD5&#xFF0C;&#x7136;&#x540E;&#x4E24;&#x4E2A;MD5&#x5B57;&#x7B26;&#x4E32;&#x6BD4;&#x5BF9;&#x4EE5;&#x9A8C;&#x8BC1;&#x539F;&#x59CB;&#x6570;&#x636E;&#x5728;&#x53D1;&#x9001;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x662F;&#x5426;&#x6709;&#x6CA1;&#x6709;&#x88AB;&#x7BE1;&#x6539;&#x8FC7;</p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-08-28T11:10:39.000Z" itemprop="datePublished">2017-08-28</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2017/08/28/什么样代码是好的？对于编写代码，人们常常会出现哪些误区？/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    什么样代码是好的？对于编写代码，人们常常会出现哪些误区？
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a class="ui tiny button disabled">Next<i class="angle right icon"></i></a>
+
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">Wooop</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
