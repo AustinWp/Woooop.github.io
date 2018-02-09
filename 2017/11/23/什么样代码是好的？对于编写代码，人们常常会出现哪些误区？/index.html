@@ -1,0 +1,22 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 什么样代码是好的？对于编写代码，人们常常会出现哪些误区？ · 武小鹏的博客</title><meta name="description" content="什么样代码是好的？对于编写代码，人们常常会出现哪些误区？ - Wooop"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="武小鹏的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://weibo.com/MrJingZhi" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/Woooop" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">什么样代码是好的？对于编写代码，人们常常会出现哪些误区？</h1><div class="post-info">Nov 23, 2017</div><div class="post-content"><h5 id="什么样代码是好的？对于编写代码，人们常常会出现哪些误区？"><a href="#什么样代码是好的？对于编写代码，人们常常会出现哪些误区？" class="headerlink" title="什么样代码是好的？对于编写代码，人们常常会出现哪些误区？"></a>什么样代码是好的？对于编写代码，人们常常会出现哪些误区？</h5><ul>
+<li><p>代码是更多时间是用来维护的，其次才是实现功能的</p>
+</li>
+<li><p>好的代码是可以进行良好的自我描述的，并不需要太多的注释，为了代码更好的维护，在无法写出一目了然的代码的时候，必要的注释是不能少的。切勿不能代码逻辑既复杂，还没有相应的注释或者文档说明。</p>
+</li>
+<li><p>所有的设计模型和理论都只是手段，其实唯一的目标是在尽量提高（可维护性，可复用性=可测试性）等等的条件下实现业务需求。切不可形而上学，走教条主义，一味的追求固话的设计模式从而使得代码复杂难以理解和测试。</p>
+<h5 id="那么如何写出好的代码？"><a href="#那么如何写出好的代码？" class="headerlink" title="那么如何写出好的代码？"></a>那么如何写出好的代码？</h5><ul>
+<li>code review  重点不是机器可以检查出来的代码错误或者一些细微的编写习惯，重点是代码的设计思路和模块的划分方法，对于实际情况中，小团队的集体重构是一个很好的选择</li>
+<li>代码重构</li>
+<li>阅读优秀的开源代码，或者组内优秀同学写出的代码，阅读自己身边人的代码好处是可以问问他们为什么这样写，为什么那样写，进步会很快。</li>
+<li>最后是使用一些静态代码检查的工具进行代码检查。</li>
+</ul>
+<h5 id="常用的代码整洁技巧："><a href="#常用的代码整洁技巧：" class="headerlink" title="常用的代码整洁技巧："></a>常用的代码整洁技巧：</h5><ul>
+<li>任何一个东西（class method var）都应该明确的负责某个单一概念的事情。</li>
+<li>在编写一个功能点之前，对其实现方式进行一个大体的设计（如果是强数据相关的话，在脑海中把数据流串起来，必要的时候可以使用状态机的概念跟踪APP的变化），然后再完成细节实现代码。</li>
+<li>类，方法，变量，名称的设计，函数和方法参数的设计，目的是尽量靠近让人一目了然的效果</li>
+<li>对于任何的方法和类，无论是UI相关还是网络相关还是逻辑相关或者是数据处理相关，都必须准确的找到一个类的归属，并且这个归属是师出有名的。这就需要一个良好的概念定义和设计，（具体就是指，这些事情怎么分块，放在哪，之间怎么依赖）</li>
+<li>对复杂继承的使用保持慎独的态度，如果套东西使用复杂继承关系并不是必要的，那么尽量不要使用。</li>
+</ul>
+</li>
+</ul>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/02/09/2017至2018年度总结和规划/" class="prev">PREV</a><a href="/2017/11/23/保证用户拿到的内容没有被篡改的验证方法/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2018 <a href="http://yoursite.com">Wooop</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
