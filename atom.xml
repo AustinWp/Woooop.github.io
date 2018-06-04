@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-02-09T07:16:54.756Z</updated>
+  <updated>2018-06-04T11:26:23.034Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一种提升iOS编译速度的方案</title>
+    <link href="http://yoursite.com/2018/04/26/%E4%B8%80%E7%A7%8D%E6%8F%90%E5%8D%87iOS%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6%E7%9A%84%E6%96%B9%E6%A1%88/"/>
+    <id>http://yoursite.com/2018/04/26/一种提升iOS编译速度的方案/</id>
+    <published>2018-04-26T07:49:17.000Z</published>
+    <updated>2018-06-04T11:26:23.034Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="1-为什么要做编译提效的工作？"><a href="#1-为什么要做编译提效的工作？" class="headerlink" title="1.为什么要做编译提效的工作？"></a>1.为什么要做编译提效的工作？</h5><p>随着业务越来越复杂，以及不同阶段所背负的历史包袱，不可避免的代码会不断的增多，编译效率会不断变低，虽然Xcode给我们提供了增量编译的功能，但是并不友好，缓存不可控，实际效果大家也有体会。所以为了使开发人员更加有效率愉快的工作，怎么解决编译效能的问题突显了出来。</p><h5 id="2-常见的方案"><a href="#2-常见的方案" class="headerlink" title="2.常见的方案"></a>2.常见的方案</h5><ol><li>打包为静态库，这种方向是把私有库或者三方库直接编译为静态库成品，以便编译的时候直接链接使用，这种方式是直接省略了私有库或者静态库的编译过程，所以能够节约整体的时间。代表Cocoapods-packager Carthage等，但是这种方式有以下几个缺陷<ol><li>对经常变化的私有库无能为力</li><li>强行使用需要不断编译为静态库，反而得不偿失</li><li>调试比较麻烦</li></ol></li><li>分布式编译，这种方式比较适合大型项目，并且对网络带宽的要求比较高，代表有Distcc，但是结合我们的项目实际，这种方式并不是很适用。</li><li>缓存编译结果，这种方式是另外一个思路，代表有Facebook的Buck,以及适用于c系语言的CCache。他们分别有以下的特点<ol><li>Buck是由Facebook推出的智能增量编译方案，比较大，但是通用，支持iOS,安卓,Java。但是它完全摒弃了Xcode的编译流程，自己构建了一套开发调试系列工具，考虑的团队的使用成本这个太重了，也不是很好。</li><li>CCache是一个轻量的缓存编译文件工具，简单灵活。但也有缺点，就iOS而言，只支持C系语言,对Swift不适用。但整体比较适合当前我们的产品现状。</li></ol></li></ol><h5 id="3-CCache是如何提效编译的？"><a href="#3-CCache是如何提效编译的？" class="headerlink" title="3.CCache是如何提效编译的？"></a>3.CCache是如何提效编译的？</h5><p>下面这张图基本就阐述了CCache的工作原理。</p><p><img src="/2018/04/26/一种提升iOS编译速度的方案/01.jpg" alt="01"></p><ol><li>蓝色部分为正常的编译流程大家都很熟悉了。</li><li>红色及黄色部分为CCache所增加的部分，其中红色的路径为命中已缓存文件的时候，黄色路径为未命中的时候，在未命中目标文件缓存时，还是用使用原本的编译器进行编译然后保存结果文件至缓存区。</li></ol><h5 id="4-目前项目中的实际编译流程"><a href="#4-目前项目中的实际编译流程" class="headerlink" title="4.目前项目中的实际编译流程"></a>4.目前项目中的实际编译流程</h5><p><img src="/2018/04/26/一种提升iOS编译速度的方案/02.jpg" alt="02"></p><p>在编译逻辑之外，主要加入了项目适配的一些逻辑，在打包的过程中使用默认的编译器，以防一些不可知的风险，编译提效主要应用在开发过程中提升效率。</p><h5 id="5-实际的效果"><a href="#5-实际的效果" class="headerlink" title="5.实际的效果"></a>5.实际的效果</h5><p>全量编译测试效果如下图所示，现在代码已经合入我们的开发分支，实际使用的效果也是不错，开发心情愉快了许多^.^.<br><img src="/2018/04/26/一种提升iOS编译速度的方案/03.jpg" alt="03"></p><p>可以看到，在优化前和优化后效果有明显的差异，提升的不少，在MacMini上全量编译时间由351秒缩短至124秒，在MacBookPro上全量编译时间由238秒提升至56秒，有数倍之差。</p><h5 id="6-那么效果这么好，我们怎么用起来？"><a href="#6-那么效果这么好，我们怎么用起来？" class="headerlink" title="6.那么效果这么好，我们怎么用起来？"></a>6.那么效果这么好，我们怎么用起来？</h5><ol><li><p>安装CCache<br> 命令如下:</p>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install ccache</div></pre></td></tr></table></figure><p> 可使用ccache -s 来查看是否安装成功，这个命令会显示ccache当前的状态，一些可配置的信息，具体可以手册<a href="https://ccache.samba.org/manual/latest.html" target="_blank" rel="external">https://ccache.samba.org/manual/latest.html</a></p><p> <img src="/2018/04/26/一种提升iOS编译速度的方案/04.jpg" alt="04"><br> 可以看到，我这边已经有2.6G的缓存了。 </p></li><li><p>利用llvm帮我预留的命令来添加编译接管脚本，具体来说就是当我们command+b进行编译的时候会先跑到这个脚本里面。具体命令为CC代表编译C文件，CPLUSPLUS代表编译CPP文件，具体可以看这里<a href="http://lists.llvm.org/pipermail/cfe-dev/2014-March/035816.html" target="_blank" rel="external">http://lists.llvm.org/pipermail/cfe-dev/2014-March/035816.html</a><br> 所以需要创建两个脚本，ccache-clang用来编译C，ccache-clang++用来编译CPP，在这个脚本里我们可以动手脚，使用CCache来编译。具体代码已C为例如下:<br> <img src="/2018/04/26/一种提升iOS编译速度的方案/05.jpg" alt="05"></p><p> 具体的操作办法:增加user-defined设置，添加CC命令，对应脚本路径，根据自己实际上面脚本所在的位置。<br><img src="/2018/04/26/一种提升iOS编译速度的方案/06.jpg" alt="06"></p></li><li><p>这样就可以了，编译就会进入CCache路径，但是想要让CCache真的生效，我们需要关闭Xcode5以后所提供的Modules，之所以要关闭这个是因为Modules提供了我们便捷导入头文件的方式，以及做了一些优化，但是CCache的原理是需要使用原生C语言的预处理规范。考虑到对于编译效率明显的提升效果，我们还是可以放弃Modules的。关闭Modules会造成两个问题，第一个是不能使用@import语法，第二个是系统不再会自动帮我导入一些系统库。例如UIKit等。这两项的具体原因可以在<a href="https://developer.apple.com/library/content/documentation/Xcode/Conceptual/WhatsNewXcode-Archive/Articles/xcode_5_0.html" target="_blank" rel="external">https://developer.apple.com/library/content/documentation/Xcode/Conceptual/WhatsNewXcode-Archive/Articles/xcode_5_0.html</a>中的complie一节找到。</p><blockquote><p>那么如何解决这些问题，对于主工程很好办，直接修改@import语法代码，并且导入为数不多的几个系统库就OK了，难点在于如何让我们的私有库也享受到缓存的效果。为了解决这个问题，我想了很多办法。最终也比较方便的解决了这个问题。</p><p>首先，对于私有库或者三方库里的@import语法，私有库可以直接修改，三方库可以fork之后修改，如果实在不想fork三方库，下面也有被动方法去解决这个问题。</p><p>对于link系统库的问题，因为无论是私有库还是三方库，我们在做pod install的时候，总是会重新构建各个库的工程文件，也就是framework的配置，我们可以手动在buildsetting里修改otherLinkerFlag，但是这样下次重新生成又会失效，有的同学说可以在podspec里面添加依赖一劳永逸，但是对于不收我们控制的三方库，这样做又显得太麻烦，并且侵入性比较高，得每个库都修改podspec.</p></blockquote><p> 我具体的做法是这样，在podfile中添加脚本，利用podfile的钩子函数在生成所有的pod工程文件后利用脚本去修改这些工程文件中的otherLinkerFlag参数，把对应需要的系统空添加进去.<br> 在podfile文件中引入rb脚本.</p> <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#引入</span></div><div class="line">require_relative <span class="string">"scripts/cc.rb"</span></div><div class="line"></div><div class="line"><span class="comment">#在钩子函数中使用脚本</span></div><div class="line">post_install <span class="keyword">do</span> <span class="params">|installer|</span></div><div class="line">ccclass = CC.new</div><div class="line">ccclass.updatePodsTargetsBuildSetting installer</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure><p> 在CC.rb里面维护了两个表，其中SupportPodHash是私有库所需要的系统库表，便于脚本操作，另外一个UnSupportPodArray是需要屏蔽的库的列表，例如一些比较麻烦的库,这里就屏蔽掉了，意味着不会去修改其Modules,也不会去修改其他的东西，但这样针对JYVLive就不会有缓存了。上面提到的一些麻烦的库不想支持的，就可以在这里去屏蔽它。此外值得一提的是，如果不在支持的列表里面也不会去修改，所以对于不想支持的库，要么直接不要在SupportPodHash表里面出现，要么SupportPodHash里有，需要在UnSupportPodArray里面屏蔽。对于教育产品里面不同的产品，大部分情况下着这个脚本是可以通用的，少数情况下使用的某个私有库的分支大家不一样，不同的分支里可能依赖的系统库不一样，这样就是不同的产品要做一下微调。<br> <img src="/2018/04/26/一种提升iOS编译速度的方案/07.jpg" alt="07"><br>这里需要特别注意，路径要改为和自己脚本所在位置匹配的。</p><p> 关键代码如下:<br><img src="/2018/04/26/一种提升iOS编译速度的方案/08.jpg" alt="08"><br> 这里所做的操作就是如何去修改POD的buildsetting里面的otherLinkerFlag参数。以达到我们的目的。</p><blockquote><p>好了，基本到这里就差不多可以用了</p></blockquote><p> 后记，遇到任何编译不通过的情况，首先考虑是不是链接库不对。</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;1-为什么要做编译提效的工作？&quot;&gt;&lt;a href=&quot;#1-为什么要做编译提效的工作？&quot; class=&quot;headerlink&quot; title=&quot;1.为什么要做编译提效的工作？&quot;&gt;&lt;/a&gt;1.为什么要做编译提效的工作？&lt;/h5&gt;&lt;p&gt;随着业务越来越复杂，以及不同阶段所背
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>2017至2018年度总结和规划</title>
@@ -30,6 +51,27 @@
       
       
         &lt;h4 id=&quot;2017至2018年度总结和规划&quot;&gt;&lt;a href=&quot;#2017至2018年度总结和规划&quot; class=&quot;headerlink&quot; title=&quot;2017至2018年度总结和规划&quot;&gt;&lt;/a&gt;2017至2018年度总结和规划&lt;/h4&gt;&lt;p&gt;​    按照传统的习惯，我
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>什么样代码是好的？对于编写代码，人们常常会出现哪些误区？</title>
+    <link href="http://yoursite.com/2017/11/23/%E4%BB%80%E4%B9%88%E6%A0%B7%E4%BB%A3%E7%A0%81%E6%98%AF%E5%A5%BD%E7%9A%84%EF%BC%9F%E5%AF%B9%E4%BA%8E%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%BA%BA%E4%BB%AC%E5%B8%B8%E5%B8%B8%E4%BC%9A%E5%87%BA%E7%8E%B0%E5%93%AA%E4%BA%9B%E8%AF%AF%E5%8C%BA%EF%BC%9F/"/>
+    <id>http://yoursite.com/2017/11/23/什么样代码是好的？对于编写代码，人们常常会出现哪些误区？/</id>
+    <published>2017-11-23T03:18:21.516Z</published>
+    <updated>2017-11-23T03:18:21.516Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="什么样代码是好的？对于编写代码，人们常常会出现哪些误区？"><a href="#什么样代码是好的？对于编写代码，人们常常会出现哪些误区？" class="headerlink" title="什么样代码是好的？对于编写代码，人们常常会出现哪些误区？"></a>什么样代码是好的？对于编写代码，人们常常会出现哪些误区？</h5><ul><li><p>代码是更多时间是用来维护的，其次才是实现功能的</p></li><li><p>好的代码是可以进行良好的自我描述的，并不需要太多的注释，为了代码更好的维护，在无法写出一目了然的代码的时候，必要的注释是不能少的。切勿不能代码逻辑既复杂，还没有相应的注释或者文档说明。</p></li><li><p>所有的设计模型和理论都只是手段，其实唯一的目标是在尽量提高（可维护性，可复用性=可测试性）等等的条件下实现业务需求。切不可形而上学，走教条主义，一味的追求固话的设计模式从而使得代码复杂难以理解和测试。</p><h5 id="那么如何写出好的代码？"><a href="#那么如何写出好的代码？" class="headerlink" title="那么如何写出好的代码？"></a>那么如何写出好的代码？</h5><ul><li>code review  重点不是机器可以检查出来的代码错误或者一些细微的编写习惯，重点是代码的设计思路和模块的划分方法，对于实际情况中，小团队的集体重构是一个很好的选择</li><li>代码重构</li><li>阅读优秀的开源代码，或者组内优秀同学写出的代码，阅读自己身边人的代码好处是可以问问他们为什么这样写，为什么那样写，进步会很快。</li><li>最后是使用一些静态代码检查的工具进行代码检查。</li></ul><h5 id="常用的代码整洁技巧："><a href="#常用的代码整洁技巧：" class="headerlink" title="常用的代码整洁技巧："></a>常用的代码整洁技巧：</h5><ul><li>任何一个东西（class method var）都应该明确的负责某个单一概念的事情。</li><li>在编写一个功能点之前，对其实现方式进行一个大体的设计（如果是强数据相关的话，在脑海中把数据流串起来，必要的时候可以使用状态机的概念跟踪APP的变化），然后再完成细节实现代码。</li><li>类，方法，变量，名称的设计，函数和方法参数的设计，目的是尽量靠近让人一目了然的效果</li><li>对于任何的方法和类，无论是UI相关还是网络相关还是逻辑相关或者是数据处理相关，都必须准确的找到一个类的归属，并且这个归属是师出有名的。这就需要一个良好的概念定义和设计，（具体就是指，这些事情怎么分块，放在哪，之间怎么依赖）</li><li>对复杂继承的使用保持慎独的态度，如果套东西使用复杂继承关系并不是必要的，那么尽量不要使用。</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;什么样代码是好的？对于编写代码，人们常常会出现哪些误区？&quot;&gt;&lt;a href=&quot;#什么样代码是好的？对于编写代码，人们常常会出现哪些误区？&quot; class=&quot;headerlink&quot; title=&quot;什么样代码是好的？对于编写代码，人们常常会出现哪些误区？&quot;&gt;&lt;/a&gt;什么
       
     
     </summary>
@@ -55,27 +97,6 @@
 &lt;p&gt;2.服务器公布公钥&lt;/p&gt;
 &lt;p&gt;3.服务器对即将发布的数据进行MD5，使用私钥对MD5后生成的字符串进行加密，生成的东西称之为签名&lt;/p&gt;
 &lt;p&gt;4.服务器把这个签名和本来要发的数据一起发
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>什么样代码是好的？对于编写代码，人们常常会出现哪些误区？</title>
-    <link href="http://yoursite.com/2017/11/23/%E4%BB%80%E4%B9%88%E6%A0%B7%E4%BB%A3%E7%A0%81%E6%98%AF%E5%A5%BD%E7%9A%84%EF%BC%9F%E5%AF%B9%E4%BA%8E%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%BA%BA%E4%BB%AC%E5%B8%B8%E5%B8%B8%E4%BC%9A%E5%87%BA%E7%8E%B0%E5%93%AA%E4%BA%9B%E8%AF%AF%E5%8C%BA%EF%BC%9F/"/>
-    <id>http://yoursite.com/2017/11/23/什么样代码是好的？对于编写代码，人们常常会出现哪些误区？/</id>
-    <published>2017-11-23T03:18:21.516Z</published>
-    <updated>2017-11-23T03:18:21.516Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="什么样代码是好的？对于编写代码，人们常常会出现哪些误区？"><a href="#什么样代码是好的？对于编写代码，人们常常会出现哪些误区？" class="headerlink" title="什么样代码是好的？对于编写代码，人们常常会出现哪些误区？"></a>什么样代码是好的？对于编写代码，人们常常会出现哪些误区？</h5><ul><li><p>代码是更多时间是用来维护的，其次才是实现功能的</p></li><li><p>好的代码是可以进行良好的自我描述的，并不需要太多的注释，为了代码更好的维护，在无法写出一目了然的代码的时候，必要的注释是不能少的。切勿不能代码逻辑既复杂，还没有相应的注释或者文档说明。</p></li><li><p>所有的设计模型和理论都只是手段，其实唯一的目标是在尽量提高（可维护性，可复用性=可测试性）等等的条件下实现业务需求。切不可形而上学，走教条主义，一味的追求固话的设计模式从而使得代码复杂难以理解和测试。</p><h5 id="那么如何写出好的代码？"><a href="#那么如何写出好的代码？" class="headerlink" title="那么如何写出好的代码？"></a>那么如何写出好的代码？</h5><ul><li>code review  重点不是机器可以检查出来的代码错误或者一些细微的编写习惯，重点是代码的设计思路和模块的划分方法，对于实际情况中，小团队的集体重构是一个很好的选择</li><li>代码重构</li><li>阅读优秀的开源代码，或者组内优秀同学写出的代码，阅读自己身边人的代码好处是可以问问他们为什么这样写，为什么那样写，进步会很快。</li><li>最后是使用一些静态代码检查的工具进行代码检查。</li></ul><h5 id="常用的代码整洁技巧："><a href="#常用的代码整洁技巧：" class="headerlink" title="常用的代码整洁技巧："></a>常用的代码整洁技巧：</h5><ul><li>任何一个东西（class method var）都应该明确的负责某个单一概念的事情。</li><li>在编写一个功能点之前，对其实现方式进行一个大体的设计（如果是强数据相关的话，在脑海中把数据流串起来，必要的时候可以使用状态机的概念跟踪APP的变化），然后再完成细节实现代码。</li><li>类，方法，变量，名称的设计，函数和方法参数的设计，目的是尽量靠近让人一目了然的效果</li><li>对于任何的方法和类，无论是UI相关还是网络相关还是逻辑相关或者是数据处理相关，都必须准确的找到一个类的归属，并且这个归属是师出有名的。这就需要一个良好的概念定义和设计，（具体就是指，这些事情怎么分块，放在哪，之间怎么依赖）</li><li>对复杂继承的使用保持慎独的态度，如果套东西使用复杂继承关系并不是必要的，那么尽量不要使用。</li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;什么样代码是好的？对于编写代码，人们常常会出现哪些误区？&quot;&gt;&lt;a href=&quot;#什么样代码是好的？对于编写代码，人们常常会出现哪些误区？&quot; class=&quot;headerlink&quot; title=&quot;什么样代码是好的？对于编写代码，人们常常会出现哪些误区？&quot;&gt;&lt;/a&gt;什么
       
     
     </summary>
